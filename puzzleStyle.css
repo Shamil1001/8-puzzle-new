@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+.p5Canvas{
+  margin: 100px 30%;
+  border-radius: 15px;
+}
+
+.shuffle-btn{
+  position: absolute;
+  left: 42%;
+  top: 85vh;
+}
+
+#defaultCanvas0 {
+        width: 35%;
+        height: 350px;
+        
+    
+      }
+/* .puzzlePage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#canvas {
+  display: flex;
+  justify-content: center;
+} */
+
+/* img {
+  width: 100%;
+} */
