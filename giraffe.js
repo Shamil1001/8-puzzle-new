@@ -1,17 +1,13 @@
 // import { Image } from "./index.js";
 let source;
 
-
-// Tiles configuration
 let tiles = [];
 let cols = 3;
 let rows = 3;
 let w, h;
 
-// Order of tiles
 let board = [];
 
-// Loading the image
 function preload() {
   source = loadImage("./giraffe.webp");
 }
@@ -43,15 +39,16 @@ function setup() {
   // -1 means empty spot
   board.push(-1);
 
-  // Shuffle the board
   // simpleShuffle(board);
 }
 
 // Swap two elements of an array
 function swap(i, j, arr) {
-  let temp = arr[i];
-  arr[i] = arr[j];
-  arr[j] = temp;
+  setTimeout(() => {
+    let temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }, 100);
 }
 
 // Pick a random spot to attempt a move
@@ -64,26 +61,47 @@ function randomMove(arr) {
 
 // Shuffle the board
 function simpleShuffle(arr) {
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 30; i++) {
     randomMove(arr);
   }
 }
 
+let a = document.getElementById("shuffle-option");
+
+let shuffleOption = 0;
+
+a.addEventListener("change", () => {
+  shuffleOption = a.options[a.value].textContent;
+  // console.log(a.options[a.value].textContent)
+});
+
 let shuffleBtn = document.querySelector(".shuffle-btn");
-shuffleBtn.addEventListener('click',()=>{
-    simpleShuffle(board);
-})
+shuffleBtn.addEventListener("click", () => {
+  simpleShuffle(board);
+  // console.log(board);
+  // console.log(shuffleOption);
+});
 
 // Move based on click
 function mousePressed() {
   let i = floor(mouseX / w);
   let j = floor(mouseY / h);
   move(i, j, board);
+  if (isSolved()) {
+    console.log("SOLVED");
+    // alert('YOU solve it')
+  }
 }
 
 function draw() {
   background(199, 200, 201);
-
+  let blank = findBlank();
+  let blankCol = blank % cols;
+  let blankRow = floor(blank / rows);
+  // console.log(blankCol)
+  // Double check valid move
+  // if (isNeighbor(i, j, blankCol, blankRow)) {
+  // }
   // Draw the current board
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
@@ -93,8 +111,11 @@ function draw() {
       let tileIndex = board[index];
       if (tileIndex > -1) {
         let img = tiles[tileIndex].img;
-        image(img, x, y, w, h);
-        
+        // if (isNeighbor(i, j, blankCol, blankRow)) {
+        // }
+        // tint(255,127)
+        // noTint()
+        let picture = image(img, x, y, w, h);
       }
     }
   }
@@ -107,18 +128,12 @@ function draw() {
       strokeWeight(1);
       stroke("green");
       noFill();
-      rect(x, y, w, h,);
+      rect(x, y, w, h);
+      // fill(255,200,255);
     }
-  }
-
-  // If it is solved
-  if (isSolved()) {
-    // console.log("SOLVED");
-    // alert('YOU solve it')
   }
 }
 
-// Check if solved
 function isSolved() {
   for (let i = 0; i < board.length - 1; i++) {
     if (board[i] !== tiles[i].index) {
@@ -133,7 +148,7 @@ function move(i, j, arr) {
   let blank = findBlank();
   let blankCol = blank % cols;
   let blankRow = floor(blank / rows);
-
+  // console.log(blankCol)
   // Double check valid move
   if (isNeighbor(i, j, blankCol, blankRow)) {
     swap(blank, i + j * cols, arr);
@@ -152,10 +167,11 @@ function isNeighbor(i, j, x, y) {
   return false;
 }
 
-// Probably could just use a variable
-// to track blank spot
 function findBlank() {
   for (let i = 0; i < board.length; i++) {
-    if (board[i] == -1) return i;
+    if (board[i] == -1) {
+      // console.log(i);
+      return i;
+    }
   }
 }
