@@ -1,4 +1,3 @@
-// import { Image } from "./index.js";
 let source;
 
 let tiles = [];
@@ -13,13 +12,11 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(400, 400);
 
-  // pixel dimensions of each tiles
+  let canvas=createCanvas(400, 400);
   w = width / cols;
   h = height / rows;
 
-  // Chop up source image into tiles
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       let x = i * w;
@@ -36,7 +33,7 @@ function setup() {
   // Remove the last tile
   tiles.pop();
   board.pop();
-  // -1 means empty spot
+  // -1 means empty tile
   board.push(-1);
 
   // simpleShuffle(board);
@@ -51,16 +48,15 @@ function swap(i, j, arr) {
   }, 100);
 }
 
-// Pick a random spot to attempt a move
-// This should be improved to select from only valid moves
 function randomMove(arr) {
   let r1 = floor(random(cols));
   let r2 = floor(random(rows));
+  // console.log(r1, r2)
   move(r1, r2, arr);
 }
 
 // Shuffle the board
-function simpleShuffle(arr) {
+function simpleShuffle(arr,shuffleNum) {
   for (let i = 0; i < 30; i++) {
     randomMove(arr);
   }
@@ -77,7 +73,7 @@ a.addEventListener("change", () => {
 
 let shuffleBtn = document.querySelector(".shuffle-btn");
 shuffleBtn.addEventListener("click", () => {
-  simpleShuffle(board);
+  simpleShuffle(board, shuffleOption);
   // console.log(board);
   // console.log(shuffleOption);
 });
@@ -95,14 +91,7 @@ function mousePressed() {
 
 function draw() {
   background(199, 200, 201);
-  let blank = findBlank();
-  let blankCol = blank % cols;
-  let blankRow = floor(blank / rows);
-  // console.log(blankCol)
-  // Double check valid move
-  // if (isNeighbor(i, j, blankCol, blankRow)) {
-  // }
-  // Draw the current board
+  
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       let index = i + j * cols;
@@ -111,26 +100,29 @@ function draw() {
       let tileIndex = board[index];
       if (tileIndex > -1) {
         let img = tiles[tileIndex].img;
-        // if (isNeighbor(i, j, blankCol, blankRow)) {
-        // }
-        // tint(255,127)
-        // noTint()
-        let picture = image(img, x, y, w, h);
+        var picture = image(img, x, y, w, h);
       }
     }
   }
+  // picture.parent('qwert')
 
-  // Show it as grid
+  var recArr=[]
+  let num=0
+  
   for (let i = 0; i < cols; i++) {
+    
     for (let j = 0; j < rows; j++) {
       let x = i * w;
       let y = j * h;
       strokeWeight(1);
       stroke("green");
       noFill();
-      rect(x, y, w, h);
+      num++
+      // console.log(num)
+      var rec=rect(x, y, w, h);
       // fill(255,200,255);
     }
+    // rec.tint(255,127)
   }
 }
 
