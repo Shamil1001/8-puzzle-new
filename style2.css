@@ -33,6 +33,28 @@
   margin-top: 100px;
 }
 
+.imgPick .continue{
+  display: none;
+  height: 60px;
+  /* color: red; */
+  font-size: 25px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: "Signika Negative", sans-serif;
+}
+
+.imgPick .active{
+  display: block;
+  height: 60px;
+  /* color: red; */
+  font-size: 25px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: "Signika Negative", sans-serif;
+
+}
+
+
 .imgPick a button {
   /* display: none; */
   font-size: 23px;
@@ -45,10 +67,6 @@
   text-decoration: none;
 }
 
-.continue {
-  height: 60px;
-  /* width: 10%; */
-}
 
 .chosen {
   border: 5px solid white;

@@ -1,44 +1,27 @@
-var chosenImg = "";
+var Image = {
+  url: ""
+};
 
-var Image={
-  url: 'giraffe'
-}
+// export {Image}
 
-// var arr=['giraffe']
+function Puzzle() {
+  const btn = document.querySelector(".continue");
 
-export {Image}
-// define(function (require, exports, module) {
-  
-  //   module.exports = {
-    //     Image
-    //   };
-    
-    // });
-    
-    // module.exports={Image}
-    
-    // export default Image
-    
-    function Puzzle() {
-      const btn = document.querySelector(".continue");
-
-      btn.addEventListener('click', ()=>{
-        if(Image.url=='giraffe'){
-          window.location.replace('./puzzle.html')
-        }
-        if(Image.url=='books'){
-          window.location.replace('./puzzle2.html')
-        }
-        if(Image.url=='tourist'){
-          window.location.replace('./puzzle3.html')
-        }
-
-      })
+  btn.addEventListener("click", () => {
+    if (Image.url == "giraffe") {
+      window.location.replace("./puzzle.html");
+    }
+    if (Image.url == "books") {
+      window.location.replace("./puzzle2.html");
+    }
+    if (Image.url == "tourist") {
+      window.location.replace("./puzzle3.html");
+    }
+  });
 
   const giraffe = document.querySelector(".giraffe");
   const tourist = document.querySelector(".tourist");
   const books = document.querySelector(".books");
-
 
   let bool = false;
 
@@ -48,6 +31,7 @@ export {Image}
     tourist.classList.remove("chosen");
     books.classList.remove("chosen");
     giraffe.classList.toggle("chosen");
+    btn.classList.toggle("active");
     // bool !== bool;
     // console.log(bool);
   });
@@ -57,6 +41,7 @@ export {Image}
     giraffe.classList.remove("chosen");
     books.classList.remove("chosen");
     tourist.classList.toggle("chosen");
+    btn.classList.toggle("active");
   });
   books.addEventListener("click", () => {
     Image.url = "books";
@@ -64,9 +49,8 @@ export {Image}
     giraffe.classList.remove("chosen");
     tourist.classList.remove("chosen");
     books.classList.toggle("chosen");
+    btn.classList.toggle("active");
   });
 }
 
 Puzzle();
-
-
