@@ -6,14 +6,17 @@
 }
 
 .p5Canvas{
-  margin: 100px 30%;
+  margin: 20px 30%;
   border-radius: 15px;
 }
 
-.shuffle-btn{
+.shuffle-div{
   position: absolute;
-  left: 42%;
-  top: 85vh;
+  left: 40%;
+  top: 70vh;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 }
 
 .form-select{
