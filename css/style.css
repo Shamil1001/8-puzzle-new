@@ -9,7 +9,7 @@ body {
 .sliding-puzzle-figure {
   margin: auto;
   height: 650px;
-  width: 650px;
+  width: 670px;
   max-height: 70vh;
   max-width: 70vh;
   padding-bottom: 10vh;
@@ -40,8 +40,9 @@ body {
       border-radius: 10px;
       border: 2px solid green;
       cursor: pointer;
-      width: 31%;
-      height: 31%;
+      width: 31.5%;
+      height: 31.5%;
+      margin-left: 0;
       display: flex;
       justify-content: center;
       align-items: center;
