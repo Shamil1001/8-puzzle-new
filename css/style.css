@@ -67,7 +67,7 @@ body {
           color: rgb(63, 62, 62);
         }
         .shuffleBtn #shuffle{
-          width: 25%;
+          width: 7vw;
           height: 30px;
           margin-top: 20px;
           border-radius: 10px;
@@ -75,6 +75,14 @@ body {
           background-color: rgb(180, 27, 27);
           color: white;
           cursor: pointer;
+          display: none;
+        }
+
+        figcaption{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          
         }
 
 @media only screen and (max-width: 650px) {

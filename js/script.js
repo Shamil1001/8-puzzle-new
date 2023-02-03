@@ -78,7 +78,9 @@ function game() {
   }
 
   // Board setup according to the tileMap
-  document.querySelector("#shuffle").addEventListener("click", shuffle, true);
+  let shuffleBtn = document.querySelector("#shuffle");
+  shuffleBtn.addEventListener("click", shuffle, true);
+
   document.querySelector("#solve").addEventListener("click", solve, true);
   var tiles = document.querySelectorAll(".surat");
   // var images = document.querySelectorAll(".surat");
@@ -109,7 +111,7 @@ function game() {
       "translateX(" + xMovement + "px) " + "translateY(" + yMovement + "px)";
     tile.style.webkitTransform = translateString;
     recolorTile(tile, tileId);
-    checkActive(tile, tileId)
+    checkActive(tile, tileId);
   }
 
   function checkActive(tile, tileId) {
@@ -125,10 +127,11 @@ function game() {
   function tileClicked(event) {
     var tileNumber = event.target.getAttribute("id");
     // console.log(event.target);
-    moveTile(event.target);
+    if(shuffleOption!==0){
+      moveTile(event.target);
+    }
 
     // for (var i = 0; i < tiles.length; i++) {}
-
 
     if (checkSolution()) {
       console.log("You win!");
@@ -142,7 +145,7 @@ function game() {
     // (must be touching empty tile)
     // (must be directly perpendicular to empty tile)
     var tileNumber = tile.getAttribute("id");
-    checkActive(tile, tileNumber)
+    checkActive(tile, tileNumber);
 
     if (!tileMovable(tileNumber)) {
       console.log("Tile " + tileNumber + " can't be moved.");
@@ -227,6 +230,8 @@ function game() {
   a.addEventListener("change", () => {
     shuffleOption = a.options[a.value].textContent;
     // console.log(a.options[a.value].textContent);
+    shuffleBtn.style.display = "block";
+
   });
 
   // Shuffles the current tiles
@@ -252,6 +257,8 @@ function game() {
         shuffleCounter++;
       }
     }
+    a.style.display='none'
+    shuffleBtn.style.display='none'
   }
 
   var lastShuffled;
