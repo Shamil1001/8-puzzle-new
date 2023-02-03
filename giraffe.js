@@ -41,11 +41,9 @@ function setup() {
 
 // Swap two elements of an array
 function swap(i, j, arr) {
-  setTimeout(() => {
-    let temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
-  }, 100);
+  let temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
 }
 
 function randomMove(arr) {
@@ -57,14 +55,21 @@ function randomMove(arr) {
 
 // Shuffle the board
 function simpleShuffle(arr,shuffleNum) {
-  for (let i = 0; i < 30; i++) {
+  if(shuffleNum==3){
+    for (let i = 0; i < 12; i++) {
     randomMove(arr);
+  }
+  }
+  if(shuffleNum==30){
+    for (let i = 0; i < 1000; i++) {
+    randomMove(arr);
+  }
   }
 }
 
 let a = document.getElementById("shuffle-option");
 
-let shuffleOption = 0;
+let shuffleOption = 3;
 
 a.addEventListener("change", () => {
   shuffleOption = a.options[a.value].textContent;
@@ -100,7 +105,7 @@ function draw() {
       let tileIndex = board[index];
       if (tileIndex > -1) {
         let img = tiles[tileIndex].img;
-        var picture = image(img, x, y, w, h);
+        image(img, x, y, w, h);
       }
     }
   }

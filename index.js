@@ -9,13 +9,13 @@ function Puzzle() {
 
   btn.addEventListener("click", () => {
     if (Image.url == "giraffe") {
-      window.location.replace("./puzzle.html");
+      window.location.replace("./giraffe.html");
     }
     if (Image.url == "books") {
-      window.location.replace("./puzzle2.html");
+      window.location.replace("./book.html");
     }
     if (Image.url == "tourist") {
-      window.location.replace("./puzzle3.html");
+      window.location.replace("./drone.html");
     }
   });
 

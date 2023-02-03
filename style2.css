@@ -18,8 +18,8 @@
   /* width: 100%; */
 }
 .choices img {
-  width: 20vw;
-  height: 30vh;
+  width: 12vw;
+  height: 22vh;
   border-radius: 10px;
   cursor: pointer;
   transition: transform 0.2s;
