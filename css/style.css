@@ -12,8 +12,8 @@ body {
   width: 650px;
   max-height: 70vh;
   max-width: 70vh;
-  padding-bottom: 50vh;
-  padding-top: 10vh; }
+  padding-bottom: 10vh;
+  padding-top: 0vh; }
   .sliding-puzzle-figure a {
     cursor: pointer; }
     .sliding-puzzle-figure a#shuffle {
@@ -30,17 +30,18 @@ body {
     box-sizing: border-box;
     background-clip: border-box;
     /* Firefox 4, Safari 5, Opera 10, IE 9 */
-    border: 5px solid #4a4b4d;
+    border: 2px solid #868688;
     border-radius: 10px;
-    background-color: #cdcecf; }
+    background-color: #d9dcdf; }
     .sliding-puzzle-figure .sliding-puzzle .surat {
       position: absolute;
       background-color: #7BC8F3;
       color: #1F1F1F;
       border-radius: 10px;
+      border: 2px solid green;
       cursor: pointer;
-      /* width: 31%; */
-      /* height: 31%; */
+      width: 31%;
+      height: 31%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -55,7 +56,25 @@ body {
       }
 
       .sliding-puzzle-figure .sliding-puzzle .surat.error {
-        background-color: #F0867D; }
+        border: 1px solid #fd1500; }
+
+        #shuffle-option{
+          width: 40%;
+          height: 30px;
+          border: 2px solid gray;
+          border-radius: 5px;
+          color: rgb(63, 62, 62);
+        }
+        .shuffleBtn #shuffle{
+          width: 25%;
+          height: 30px;
+          margin-top: 20px;
+          border-radius: 10px;
+          border: none;
+          background-color: rgb(180, 27, 27);
+          color: white;
+          cursor: pointer;
+        }
 
 @media only screen and (max-width: 650px) {
   .sliding-puzzle-figure {
