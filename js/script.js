@@ -127,14 +127,15 @@ function game() {
   function tileClicked(event) {
     var tileNumber = event.target.getAttribute("id");
     // console.log(event.target);
-    if(shuffleOption!==0){
+    if (shuffleOption !== 0) {
       moveTile(event.target);
     }
 
-    // for (var i = 0; i < tiles.length; i++) {}
-
     if (checkSolution()) {
       console.log("You win!");
+      setTimeout(() => {
+        modal.style.display = "block";
+      }, 1000);
     }
   }
 
@@ -182,6 +183,11 @@ function game() {
     tileMap[tileNumber].top = emptyTop;
     tileMap[tileNumber].left = emptyLeft;
     tileMap[tileNumber].position = emptyPosition;
+
+    // if (checkSolution()) {
+    //   // console.log("You win!");
+    //   alert("You win!")
+    // }
 
     recolorTile(tile, tileNumber);
   }
@@ -231,7 +237,6 @@ function game() {
     shuffleOption = a.options[a.value].textContent;
     // console.log(a.options[a.value].textContent);
     shuffleBtn.style.display = "block";
-
   });
 
   // Shuffles the current tiles
@@ -257,8 +262,8 @@ function game() {
         shuffleCounter++;
       }
     }
-    a.style.display='none'
-    shuffleBtn.style.display='none'
+    a.style.display = "none";
+    shuffleBtn.style.display = "none";
   }
 
   var lastShuffled;
@@ -289,8 +294,6 @@ function game() {
     }
   }
 
-  // Temporary function for solving puzzle.
-  // To be reimplemented with a more sophisticated algorithm
   solveTimeouts = [];
   function solve() {
     clearTimers(shuffleTimeouts);
@@ -305,3 +308,23 @@ function game() {
     }
   }
 }
+
+//modal funcionality
+var modal = document.getElementById("myModal");
+// var btn = document.getElementById("myBtn");
+// var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+// btn.onclick = function() {
+//   modal.style.display = "block";
+// };
+
+// span.onclick = function() {
+//   modal.style.display = "none";
+// };
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
