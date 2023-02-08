@@ -1,12 +1,10 @@
-// Begin game once DOM loaded
 document.addEventListener("DOMContentLoaded", game);
 
 function game() {
-  // Data structure to hold positions of tiles
   var parentX = document.querySelector(".sliding-puzzle").clientHeight;
   console.log(parentX);
   // var screenSize=window.innerWidth
-  var baseDistance = 32;
+  var baseDistance = 33;
 
   // document.addEventListener("resize", e => {
   //   if (window.innerWidth < 650) {
@@ -114,14 +112,20 @@ function game() {
 
     // tile.style.left = tileMap[tileId].left + "%";
     // tile.style.top = tileMap[tileId].top + "%";
-    
+
     // var xMovement = parentX * (tileMap[tileId].left / 100);
     // var yMovement = parentX * (tileMap[tileId].top / 100);
+    // console.log(xMovement,yMovement)
     // var translateString =
-      // "translateX(" + xMovement + "px) " + "translateY(" + yMovement + "px)";
+    //   "translateX(" + xMovement + "px) " + "translateY(" + yMovement + "px)";
 
     var translateString =
-      "translateX(" + tileMap[tileId].left*3.2 + "%) " + "translateY(" + tileMap[tileId].top*3.2 + "%)";
+      "translateX(" +
+      tileMap[tileId].left * 3.2 +
+      "%) " +
+      "translateY(" +
+      tileMap[tileId].top * 3.2 +
+      "%)";
 
     tile.style.webkitTransform = translateString;
     recolorTile(tile, tileId);
@@ -183,16 +187,16 @@ function game() {
     // tile.style.top = emptyTop + "%";
     // tile.style.left = emptyLeft + "%";
 
-    // var xMovement = emptyLeft;
-    // var yMovement = emptyTop;
+    var xMovement = emptyLeft*3.2;
+    var yMovement = emptyTop*3.2;
 
-    var xMovement = parentX * (emptyLeft / 100);
-    var yMovement = parentX * (emptyTop / 100);
+    // var xMovement = parentX * (emptyLeft / 100);
+    // var yMovement = parentX * (emptyTop / 100);
+    // var translateString =
+    //   "translateX(" + xMovement + "px) " + "translateY(" + yMovement + "px)";
+
     var translateString =
-      "translateX(" + xMovement + "px) " + "translateY(" + yMovement + "px)";
-
-      // var translateString =
-      // "translateX(" + tileMap[tileId].left + "%) " + "translateY(" + tileMap[tileId].top + "%)";
+      "translateX(" + xMovement + "%) " + "translateY(" + yMovement + "%)";
 
     tile.style.webkitTransform = translateString;
 
