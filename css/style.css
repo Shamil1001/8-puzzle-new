@@ -10,7 +10,7 @@ body {
 .sliding-puzzle-figure {
   margin: auto;
   height: 650px;
-  width: 670px;
+  width: 650px;
   max-height: 70vh;
   max-width: 70vh;
   padding-bottom: 10vh;
@@ -42,6 +42,8 @@ body {
   border: 2px solid #868688;
   border-radius: 10px;
   background-color: #d9dcdf;
+  /* display: flex;
+  flex-direction: row; */
 }
 
 .sliding-puzzle-figure .sliding-puzzle .surat {
@@ -53,6 +55,7 @@ body {
   cursor: pointer;
   width: 31.5%;
   height: 31.5%;
+  /*  */
   margin-left: 0;
   display: flex;
   justify-content: center;
@@ -79,10 +82,11 @@ body {
   border: 2px solid gray;
   border-radius: 5px;
   color: rgb(63, 62, 62);
+  margin-top: 30px;
 }
 
 .shuffleBtn #shuffle {
-  width: 7vw;
+  width: 100%;
   height: 30px;
   margin-top: 20px;
   border-radius: 10px;
@@ -146,17 +150,25 @@ figcaption {
   .sliding-puzzle-figure {
     width: 90vw;
     height: 90vw;
-    max-height: 100vh;
   }
 
   .sliding-puzzle-figure .sliding-puzzle {
+    position: relative;
     border-width: 2px;
     border-radius: 10px;
   }
 
-  .sliding-puzzle-figure .tile {
-    font-size: 1em;
-  }
-}
+  /* .sliding-puzzle-figure .sliding-puzzle .surat{
+   
+    width: 28%;
+    height: 28%;
+  } */
 
-/*# sourceMappingURL=style.css.map */
+}
+/* @media only screen and (max-width: 500px) {
+.sliding-puzzle-figure .sliding-puzzle .surat{
+
+    width: 25%;
+    height: 25%;
+  }
+} */

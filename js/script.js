@@ -4,7 +4,16 @@ document.addEventListener("DOMContentLoaded", game);
 function game() {
   // Data structure to hold positions of tiles
   var parentX = document.querySelector(".sliding-puzzle").clientHeight;
-  var baseDistance = 34.5;
+  console.log(parentX);
+  // var screenSize=window.innerWidth
+  var baseDistance = 32;
+
+  // document.addEventListener("resize", e => {
+  //   if (window.innerWidth < 650) {
+  //     // baseDistance=20
+  //   }
+  // });
+
   var tileMap = {
     1: {
       tileNumber: 1,
@@ -100,15 +109,20 @@ function game() {
   function setup(tile) {
     var tileId = tile.getAttribute("id");
     // console.log(tileId)
-    if (!tileMovable(tileId)) {
-    }
+    // if (!tileMovable(tileId)) {
+    // }
 
-    // tile.style.left = tileMap[tileId].left + '%';
-    // tile.style.top = tileMap[tileId].top + '%';
-    var xMovement = parentX * (tileMap[tileId].left / 100);
-    var yMovement = parentX * (tileMap[tileId].top / 100);
+    // tile.style.left = tileMap[tileId].left + "%";
+    // tile.style.top = tileMap[tileId].top + "%";
+    
+    // var xMovement = parentX * (tileMap[tileId].left / 100);
+    // var yMovement = parentX * (tileMap[tileId].top / 100);
+    // var translateString =
+      // "translateX(" + xMovement + "px) " + "translateY(" + yMovement + "px)";
+
     var translateString =
-      "translateX(" + xMovement + "px) " + "translateY(" + yMovement + "px)";
+      "translateX(" + tileMap[tileId].left*3.2 + "%) " + "translateY(" + tileMap[tileId].top*3.2 + "%)";
+
     tile.style.webkitTransform = translateString;
     recolorTile(tile, tileId);
     checkActive(tile, tileId);
@@ -139,12 +153,7 @@ function game() {
     }
   }
 
-  // Moves tile to empty spot
-  // Returns error message if tile cannot be moved
   function moveTile(tile, recordHistory = true) {
-    // Check if Tile can be moved
-    // (must be touching empty tile)
-    // (must be directly perpendicular to empty tile)
     var tileNumber = tile.getAttribute("id");
     checkActive(tile, tileNumber);
 
@@ -171,13 +180,20 @@ function game() {
     tileMap.empty.left = tileMap[tileNumber].left;
     tileMap.empty.position = tileMap[tileNumber].position;
 
-    // tile.style.top = emptyTop  + '%';
-    // tile.style.left = emptyLeft  + '%';
+    // tile.style.top = emptyTop + "%";
+    // tile.style.left = emptyLeft + "%";
+
+    // var xMovement = emptyLeft;
+    // var yMovement = emptyTop;
 
     var xMovement = parentX * (emptyLeft / 100);
     var yMovement = parentX * (emptyTop / 100);
     var translateString =
       "translateX(" + xMovement + "px) " + "translateY(" + yMovement + "px)";
+
+      // var translateString =
+      // "translateX(" + tileMap[tileId].left + "%) " + "translateY(" + tileMap[tileId].top + "%)";
+
     tile.style.webkitTransform = translateString;
 
     tileMap[tileNumber].top = emptyTop;
