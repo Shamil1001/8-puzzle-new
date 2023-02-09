@@ -76,16 +76,17 @@ body {
 }
 
 #shuffle-option {
-  width: 30%;
-  height: 5vh;
+  width: 40%;
+  height: 6vh;
   border: 2px solid gray;
   border-radius: 5px;
   color: rgb(63, 62, 62);
   margin-top: 30px;
 }
 
-#shuffle-option .option{
-  width: 40px;
+#shuffle-option .option div{
+  width: 100px;
+  color: #fd1500;
 }
 
 .shuffleBtn #shuffle {
@@ -125,6 +126,8 @@ figcaption {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  word-break: break-word;
   /* background-color: rgba(0,0,0,0.4);; */
   margin: 15% auto; 
   /* padding: 20px; */
