@@ -23,11 +23,15 @@ function Puzzle() {
     if (Image.url == "books") {
       imgPick.style.display='none'
       book.style.display='block'
+      fig.style.display='flex'
+      shufflebtn.style.display='flex'
       // window.location.replace("./book.html");
     }
     if (Image.url == "tourist") {
       imgPick.style.display='none'
       dron.style.display='block'
+      fig.style.display='flex'
+      shufflebtn.style.display='flex'
       // window.location.replace("./drone.html");
     }
   });

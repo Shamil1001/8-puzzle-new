@@ -98,7 +98,7 @@ body {
 }
 
 .shuffleBtn #shuffle, .shuffleBtn-dron #shuffle-dron, .shuffleBtn-book #shuffle-book {
-  width: 100%;
+  width: 120%;
   height: 30px;
   margin-top: 20px;
   border-radius: 10px;
