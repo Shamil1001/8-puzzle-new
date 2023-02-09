@@ -1,5 +1,15 @@
 var slideIndex = 0;
-carousel();
+
+let start=document.querySelector('.start-btn')
+let mainPage=document.querySelector('.main')
+let imgPick=document.querySelector('.imgPick')
+
+start.addEventListener('click',()=>{
+  mainPage.style.display='none'
+  imgPick.style.display='flex'
+  // console.log("shamil")
+})
+
 
 function carousel() {
   var i;
@@ -14,3 +24,5 @@ function carousel() {
   x[slideIndex - 1].style.display = "block";
   setTimeout(carousel, 3000);
 }
+
+carousel();

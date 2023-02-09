@@ -7,7 +7,15 @@ body {
   khtml-tap-highlight-color: transparent;
 }
 
-.sliding-puzzle-figure {
+.giraf , .dron, .book{
+  display: none;
+}
+
+.giraf , .dron, .book{
+  /*  */
+}
+
+.sliding-puzzle-figure{
   margin: auto;
   height: 650px;
   width: 650px;
@@ -21,15 +29,15 @@ body {
   cursor: pointer;
 }
 
-.sliding-puzzle-figure a#shuffle {
+/* .sliding-puzzle-figure a#shuffle {
   color: #E74C3C;
 }
 
 .sliding-puzzle-figure a#solve {
   color: #3498DB;
-}
+} */
 
-.sliding-puzzle-figure .sliding-puzzle {
+.sliding-puzzle-figure .sliding-puzzle, .sliding-puzzle-dron, .sliding-puzzle-book {
   list-style-type: none;
   position: relative;
   margin-left: auto;
@@ -45,7 +53,7 @@ body {
   flex-direction: row; */
 }
 
-.sliding-puzzle-figure .sliding-puzzle .surat {
+.sliding-puzzle-figure .sliding-puzzle .surat, .sliding-puzzle-dron .surat-dron, .sliding-puzzle-book .surat-book {
   position: absolute;
   background-color: #7BC8F3;
   color: #1F1F1F;
@@ -67,15 +75,15 @@ body {
   box-sizing: border-box;
 }
 
-.sliding-puzzle-figure .sliding-puzzle .active {
+/* .sliding-puzzle-figure .sliding-puzzle .active {
   opacity: 50%;
-}
+} */
 
-.sliding-puzzle-figure .sliding-puzzle .surat.error {
+.sliding-puzzle-figure .sliding-puzzle .surat.error, .surat-dron.error, .surat-book.error {
   border: 1px solid #fd1500;
 }
 
-#shuffle-option {
+#shuffle-option, #shuffle-option-dron, #shuffle-option-book {
   width: 40%;
   height: 6vh;
   border: 2px solid gray;
@@ -84,12 +92,12 @@ body {
   margin-top: 30px;
 }
 
-#shuffle-option .option div{
+#shuffle-option .option{
   width: 100px;
-  color: #fd1500;
+  
 }
 
-.shuffleBtn #shuffle {
+.shuffleBtn #shuffle, .shuffleBtn-dron #shuffle-dron, .shuffleBtn-book #shuffle-book {
   width: 100%;
   height: 30px;
   margin-top: 20px;
@@ -101,11 +109,11 @@ body {
   display: none;
 }
 
-figcaption {
+.fig1, .fig2, .fig3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  justify-content: center;
 }
 
 .modal {
@@ -117,25 +125,21 @@ figcaption {
   width: 100%; 
   height: 100%; 
   overflow: auto; 
+  color: black;
   background-color: rgb(0,0,0); 
   background-color: rgba(143, 141, 141, 0.4); 
 }
 
-.modal-content {
+.modal-cont {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   word-break: break-word;
-  /* background-color: rgba(0,0,0,0.4);; */
   margin: 15% auto; 
-  /* padding: 20px; */
-  /* border: 1px solid #888; */
   width: 80%;
 }
-
-
 
 @media only screen and (max-width: 650px) {
   .sliding-puzzle-figure {
@@ -149,17 +153,4 @@ figcaption {
     border-radius: 10px;
   }
 
-  /* .sliding-puzzle-figure .sliding-puzzle .surat{
-   
-    width: 28%;
-    height: 28%;
-  } */
-
 }
-/* @media only screen and (max-width: 500px) {
-.sliding-puzzle-figure .sliding-puzzle .surat{
-
-    width: 25%;
-    height: 25%;
-  }
-} */

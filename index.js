@@ -6,16 +6,29 @@ var Image = {
 
 function Puzzle() {
   const btn = document.querySelector(".continue");
-
+  let giraf=document.querySelector('.giraf')
+  let dron=document.querySelector('.dron')
+  let book=document.querySelector('.book')
+  let imgPick=document.querySelector('.imgPick')
+  let fig=document.querySelector('figcaption')
+  let shufflebtn=document.querySelector('.shuffleBtn')
   btn.addEventListener("click", () => {
     if (Image.url == "giraffe") {
-      window.location.replace("./giraffe.html");
+      imgPick.style.display='none'
+      giraf.style.display='block'
+      fig.style.display='flex'
+      shufflebtn.style.display='flex'
+      // window.location.replace("./giraffe.html");
     }
     if (Image.url == "books") {
-      window.location.replace("./book.html");
+      imgPick.style.display='none'
+      book.style.display='block'
+      // window.location.replace("./book.html");
     }
     if (Image.url == "tourist") {
-      window.location.replace("./drone.html");
+      imgPick.style.display='none'
+      dron.style.display='block'
+      // window.location.replace("./drone.html");
     }
   });
 
@@ -32,8 +45,7 @@ function Puzzle() {
     books.classList.remove("chosen");
     giraffe.classList.toggle("chosen");
     btn.classList.toggle("active");
-    // bool !== bool;
-    // console.log(bool);
+    
   });
   tourist.addEventListener("click", () => {
     Image.url = "tourist";

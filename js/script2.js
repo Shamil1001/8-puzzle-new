@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", game);
 
 function game() {
-  var parentX = document.querySelector(".sliding-puzzle").clientHeight;
+  var parentX = document.querySelector(".sliding-puzzle-dron").clientHeight;
   console.log(parentX);
   var baseDistance = 30.8;
 
@@ -75,11 +75,11 @@ function game() {
     if (position == 1) return [2, 4];
   }
 
-  let shuffleBtn = document.querySelector("#shuffle");
+  let shuffleBtn = document.querySelector("#shuffle-dron");
   shuffleBtn.addEventListener("click", shuffle, true);
 
-  document.querySelector("#solve").addEventListener("click", solve, true);
-  var tiles = document.querySelectorAll(".surat");
+  // document.querySelector("#solve").addEventListener("click", solve, true);
+  var tiles = document.querySelectorAll(".surat-dron");
   // var images = document.querySelectorAll(".surat");
   var delay = -50;
   for (var i = 0; i < tiles.length; i++) {
@@ -196,6 +196,7 @@ function game() {
     recolorTile(tile, tileNumber);
   }
 
+  // Determines whether a given tile can be moved
   function tileMovable(tileNumber) {
     var selectedTile = tileMap[tileNumber];
     var emptyTile = tileMap.empty;
@@ -208,7 +209,7 @@ function game() {
     }
   }
 
-
+  // Returns true/false based on if the puzzle has been solved
   function checkSolution() {
     if (tileMap.empty.position !== 9) return false;
 
@@ -232,7 +233,7 @@ function game() {
     }
   }
 
-  let a = document.getElementById("shuffle-option");
+  let a = document.getElementById("shuffle-option-dron");
 
   let shuffleOption = 0;
 
