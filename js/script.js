@@ -4,13 +4,7 @@ function game() {
   var parentX = document.querySelector(".sliding-puzzle").clientHeight;
   console.log(parentX);
   // var screenSize=window.innerWidth
-  var baseDistance = 33;
-
-  // document.addEventListener("resize", e => {
-  //   if (window.innerWidth < 650) {
-  //     // baseDistance=20
-  //   }
-  // });
+  var baseDistance = 30.8;
 
   var tileMap = {
     1: {
@@ -68,10 +62,8 @@ function game() {
     }
   };
 
-  // Array of tileNumbers in order of last moved
   var history = [];
 
-  // Movement map
   function movementMap(position) {
     if (position == 9) return [6, 8];
     if (position == 8) return [5, 7, 9];
@@ -84,7 +76,6 @@ function game() {
     if (position == 1) return [2, 4];
   }
 
-  // Board setup according to the tileMap
   let shuffleBtn = document.querySelector("#shuffle");
   shuffleBtn.addEventListener("click", shuffle, true);
 
@@ -121,10 +112,10 @@ function game() {
 
     var translateString =
       "translateX(" +
-      tileMap[tileId].left * 3.2 +
+      tileMap[tileId].left * 3.3 +
       "%) " +
       "translateY(" +
-      tileMap[tileId].top * 3.2 +
+      tileMap[tileId].top * 3.3 +
       "%)";
 
     tile.style.webkitTransform = translateString;
@@ -148,13 +139,6 @@ function game() {
     if (shuffleOption !== 0) {
       moveTile(event.target);
     }
-
-    if (checkSolution()) {
-      console.log("You win!");
-      setTimeout(() => {
-        modal.style.display = "block";
-      }, 1000);
-    }
   }
 
   function moveTile(tile, recordHistory = true) {
@@ -176,7 +160,6 @@ function game() {
       }
     }
 
-    // Swap tile with empty tile
     var emptyTop = tileMap.empty.top;
     var emptyLeft = tileMap.empty.left;
     var emptyPosition = tileMap.empty.position;
@@ -187,8 +170,8 @@ function game() {
     // tile.style.top = emptyTop + "%";
     // tile.style.left = emptyLeft + "%";
 
-    var xMovement = emptyLeft*3.2;
-    var yMovement = emptyTop*3.2;
+    var xMovement = emptyLeft * 3.3;
+    var yMovement = emptyTop * 3.3;
 
     // var xMovement = parentX * (emptyLeft / 100);
     // var yMovement = parentX * (emptyTop / 100);
@@ -204,10 +187,12 @@ function game() {
     tileMap[tileNumber].left = emptyLeft;
     tileMap[tileNumber].position = emptyPosition;
 
-    // if (checkSolution()) {
-    //   // console.log("You win!");
-    //   alert("You win!")
-    // }
+    if (checkSolution()) {
+      console.log("You win!");
+      setTimeout(() => {
+        modal.style.display = "block";
+      }, 1000);
+    }
 
     recolorTile(tile, tileNumber);
   }
