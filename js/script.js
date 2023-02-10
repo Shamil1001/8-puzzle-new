@@ -80,15 +80,9 @@ function game() {
 
   document.querySelector("#solve").addEventListener("click", solve, true);
   var tiles = document.querySelectorAll(".surat");
-  // var images = document.querySelectorAll(".surat");
   var delay = -50;
   for (var i = 0; i < tiles.length; i++) {
     tiles[i].addEventListener("click", tileClicked, true);
-
-    // !tileMovable(tileNumber)
-
-    // console.log(images[i]);
-    var tileId = tiles[i].getAttribute("id");
 
     delay += 50;
     setTimeout(setup, delay, tiles[i]);
@@ -96,19 +90,7 @@ function game() {
 
   function setup(tile) {
     var tileId = tile.getAttribute("id");
-    // console.log(tileId)
-    // if (!tileMovable(tileId)) {
-    // }
-
-    // tile.style.left = tileMap[tileId].left + "%";
-    // tile.style.top = tileMap[tileId].top + "%";
-
-    // var xMovement = parentX * (tileMap[tileId].left / 100);
-    // var yMovement = parentX * (tileMap[tileId].top / 100);
-    // console.log(xMovement,yMovement)
-    // var translateString =
-    //   "translateX(" + xMovement + "px) " + "translateY(" + yMovement + "px)";
-
+    
     var translateString =
       "translateX(" +
       tileMap[tileId].left * 3.3 +
@@ -122,27 +104,16 @@ function game() {
     checkActive(tile, tileId);
   }
 
-  function checkActive(tile, tileId) {
-    if (!tileMovable(tileId)) {
-      // tile.classList.remove("active");
-      // tile.style.opacity='50%'
-    } else {
-      // tile.classList.add("active");
-      // tile.style.opacity='100%'
-    }
-  }
-
   function tileClicked(event) {
     var tileNumber = event.target.getAttribute("id");
-    // console.log(event.target);
-    if (shuffleOption !== 0) {
+    if (isShuffleBtnClicked && isShuffle==false && checkSol==false) {
       moveTile(event.target);
     }
   }
 
+  
   function moveTile(tile, recordHistory = true) {
     var tileNumber = tile.getAttribute("id");
-    checkActive(tile, tileNumber);
 
     if (!tileMovable(tileNumber)) {
       console.log("Tile " + tileNumber + " can't be moved.");
@@ -166,16 +137,8 @@ function game() {
     tileMap.empty.left = tileMap[tileNumber].left;
     tileMap.empty.position = tileMap[tileNumber].position;
 
-    // tile.style.top = emptyTop + "%";
-    // tile.style.left = emptyLeft + "%";
-
     var xMovement = emptyLeft * 3.3;
     var yMovement = emptyTop * 3.3;
-
-    // var xMovement = parentX * (emptyLeft / 100);
-    // var yMovement = parentX * (emptyTop / 100);
-    // var translateString =
-    //   "translateX(" + xMovement + "px) " + "translateY(" + yMovement + "px)";
 
     var translateString =
       "translateX(" + xMovement + "%) " + "translateY(" + yMovement + "%)";
@@ -187,6 +150,7 @@ function game() {
     tileMap[tileNumber].position = emptyPosition;
 
     if (checkSolution()) {
+      checkSol=true
       console.log("You win!");
       setTimeout(() => {
         modal.style.display = "block";
@@ -208,6 +172,7 @@ function game() {
     }
   }
 
+  var checkSol=false
 
   function checkSolution() {
     if (tileMap.empty.position !== 9) return false;
@@ -223,7 +188,6 @@ function game() {
     return true;
   }
 
-  // Check if tile is in correct place!
   function recolorTile(tile, tileId) {
     if (tileId == tileMap[tileId].position) {
       tile.classList.remove("error");
@@ -238,15 +202,13 @@ function game() {
 
   a.addEventListener("change", () => {
     shuffleOption = a.options[a.value].textContent;
-    // console.log(a.options[a.value].textContent);
     shuffleBtn.style.display = "block";
   });
-
-  // Shuffles the current tiles
+  var isShuffle=false
+  var isShuffleBtnClicked=false
   shuffleTimeouts = [];
   function shuffle() {
     clearTimers(solveTimeouts);
-    var boardTiles = document.querySelectorAll(".tile");
     var shuffleDelay = 200;
     shuffleLoop();
 
@@ -254,17 +216,25 @@ function game() {
     if (shuffleOption == 3) {
       while (shuffleCounter < 2) {
         shuffleDelay += 200;
+        isShuffle=true
         shuffleTimeouts.push(setTimeout(shuffleLoop, shuffleDelay));
         shuffleCounter++;
+
       }
+      isShuffle=false
+      
     }
     if (shuffleOption == 30) {
       while (shuffleCounter < 29) {
         shuffleDelay += 200;
+        isShuffle=true
         shuffleTimeouts.push(setTimeout(shuffleLoop, shuffleDelay));
         shuffleCounter++;
       }
+      isShuffle=false
+      
     }
+    isShuffleBtnClicked=true
     a.style.display = "none";
     shuffleBtn.style.display = "none";
   }
@@ -312,22 +282,10 @@ function game() {
   }
 }
 
-//modal funcionality
 var modal = document.getElementById("myModal");
-// var btn = document.getElementById("myBtn");
-// var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-// btn.onclick = function() {
-//   modal.style.display = "block";
-// };
-
-// span.onclick = function() {
-//   modal.style.display = "none";
-// };
 
 window.onclick = function(event) {
   if (event.target == modal) {
-    modal.style.display = "none";
+    modal.style.display = "block";
   }
 };
