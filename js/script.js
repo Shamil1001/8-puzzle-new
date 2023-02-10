@@ -110,7 +110,6 @@ function game() {
       moveTile(event.target);
     }
   }
-
   
   function moveTile(tile, recordHistory = true) {
     var tileNumber = tile.getAttribute("id");
