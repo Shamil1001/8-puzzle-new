@@ -90,7 +90,7 @@ function game() {
 
   function setup(tile) {
     var tileId = tile.getAttribute("id");
-    
+
     var translateString =
       "translateX(" +
       tileMap[tileId].left * 3.3 +
@@ -101,16 +101,15 @@ function game() {
 
     tile.style.webkitTransform = translateString;
     recolorTile(tile, tileId);
-    checkActive(tile, tileId);
   }
 
   function tileClicked(event) {
     var tileNumber = event.target.getAttribute("id");
-    if (isShuffleBtnClicked && isShuffle==false && checkSol==false) {
+    if (isShuffleBtnClicked && isShuffle == false && checkSol == false) {
       moveTile(event.target);
     }
   }
-  
+
   function moveTile(tile, recordHistory = true) {
     var tileNumber = tile.getAttribute("id");
 
@@ -149,7 +148,7 @@ function game() {
     tileMap[tileNumber].position = emptyPosition;
 
     if (checkSolution()) {
-      checkSol=true
+      checkSol = true;
       console.log("You win!");
       setTimeout(() => {
         modal.style.display = "block";
@@ -171,7 +170,7 @@ function game() {
     }
   }
 
-  var checkSol=false
+  var checkSol = false;
 
   function checkSolution() {
     if (tileMap.empty.position !== 9) return false;
@@ -195,16 +194,16 @@ function game() {
     }
   }
 
-  let a = document.getElementById("shuffle-option");
+  var a = document.getElementById("shuffle-option");
 
   let shuffleOption = 0;
+  var isShuffle = false;
+  var isShuffleBtnClicked = false;
 
   a.addEventListener("change", () => {
     shuffleOption = a.options[a.value].textContent;
     shuffleBtn.style.display = "block";
   });
-  var isShuffle=false
-  var isShuffleBtnClicked=false
   shuffleTimeouts = [];
   function shuffle() {
     clearTimers(solveTimeouts);
@@ -215,25 +214,22 @@ function game() {
     if (shuffleOption == 3) {
       while (shuffleCounter < 2) {
         shuffleDelay += 200;
-        isShuffle=true
+        isShuffle = true;
         shuffleTimeouts.push(setTimeout(shuffleLoop, shuffleDelay));
         shuffleCounter++;
-
       }
-      isShuffle=false
-      
+      isShuffle = false;
     }
     if (shuffleOption == 30) {
       while (shuffleCounter < 29) {
         shuffleDelay += 200;
-        isShuffle=true
+        isShuffle = true;
         shuffleTimeouts.push(setTimeout(shuffleLoop, shuffleDelay));
         shuffleCounter++;
       }
-      isShuffle=false
-      
+      isShuffle = false;
     }
-    isShuffleBtnClicked=true
+    isShuffleBtnClicked = true;
     a.style.display = "none";
     shuffleBtn.style.display = "none";
   }
@@ -279,12 +275,20 @@ function game() {
       );
     }
   }
+  var modal = document.querySelector("#myModal");
+
+  modal.addEventListener("click", () => {
+    modal.style.display = "none";
+    shuffleOption = 0;
+    isShuffle = false;
+    isShuffleBtnClicked = false;
+    checkSol = false;
+    a.style.display = "block";
+    a.value='Not selected'
+    a.addEventListener("change", () => {
+    shuffleOption = a.options[a.value].textContent;
+    shuffleBtn.style.display = "block";
+  });
+  });
 }
 
-var modal = document.getElementById("myModal");
-
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "block";
-  }
-};
