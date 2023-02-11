@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", game);
 
 function game() {
-  var parentX = document.querySelector(".sliding-puzzle-dron").clientHeight;
+  var parentX = document.querySelector(".sliding-puzzle").clientHeight;
   console.log(parentX);
   var baseDistance = 30.8;
 
@@ -80,15 +80,9 @@ function game() {
 
   // document.querySelector("#solve").addEventListener("click", solve, true);
   var tiles = document.querySelectorAll(".surat-dron");
-  // var images = document.querySelectorAll(".surat");
   var delay = -50;
   for (var i = 0; i < tiles.length; i++) {
     tiles[i].addEventListener("click", tileClicked, true);
-
-    // !tileMovable(tileNumber)
-
-    // console.log(images[i]);
-    var tileId = tiles[i].getAttribute("id");
 
     delay += 50;
     setTimeout(setup, delay, tiles[i]);
@@ -96,18 +90,6 @@ function game() {
 
   function setup(tile) {
     var tileId = tile.getAttribute("id");
-    // console.log(tileId)
-    // if (!tileMovable(tileId)) {
-    // }
-
-    // tile.style.left = tileMap[tileId].left + "%";
-    // tile.style.top = tileMap[tileId].top + "%";
-
-    // var xMovement = parentX * (tileMap[tileId].left / 100);
-    // var yMovement = parentX * (tileMap[tileId].top / 100);
-    // console.log(xMovement,yMovement)
-    // var translateString =
-    //   "translateX(" + xMovement + "px) " + "translateY(" + yMovement + "px)";
 
     var translateString =
       "translateX(" +
@@ -119,30 +101,17 @@ function game() {
 
     tile.style.webkitTransform = translateString;
     recolorTile(tile, tileId);
-    checkActive(tile, tileId);
-  }
-
-  function checkActive(tile, tileId) {
-    if (!tileMovable(tileId)) {
-      // tile.classList.remove("active");
-      // tile.style.opacity='50%'
-    } else {
-      // tile.classList.add("active");
-      // tile.style.opacity='100%'
-    }
   }
 
   function tileClicked(event) {
     var tileNumber = event.target.getAttribute("id");
-    // console.log(event.target);
-    if (shuffleOption !== 0) {
+    if (isShuffleBtnClicked && isShuffle == false && checkSol == false) {
       moveTile(event.target);
     }
   }
 
   function moveTile(tile, recordHistory = true) {
     var tileNumber = tile.getAttribute("id");
-    checkActive(tile, tileNumber);
 
     if (!tileMovable(tileNumber)) {
       console.log("Tile " + tileNumber + " can't be moved.");
@@ -166,16 +135,8 @@ function game() {
     tileMap.empty.left = tileMap[tileNumber].left;
     tileMap.empty.position = tileMap[tileNumber].position;
 
-    // tile.style.top = emptyTop + "%";
-    // tile.style.left = emptyLeft + "%";
-
     var xMovement = emptyLeft * 3.3;
     var yMovement = emptyTop * 3.3;
-
-    // var xMovement = parentX * (emptyLeft / 100);
-    // var yMovement = parentX * (emptyTop / 100);
-    // var translateString =
-    //   "translateX(" + xMovement + "px) " + "translateY(" + yMovement + "px)";
 
     var translateString =
       "translateX(" + xMovement + "%) " + "translateY(" + yMovement + "%)";
@@ -187,6 +148,7 @@ function game() {
     tileMap[tileNumber].position = emptyPosition;
 
     if (checkSolution()) {
+      checkSol = true;
       console.log("You win!");
       setTimeout(() => {
         modal.style.display = "block";
@@ -196,7 +158,6 @@ function game() {
     recolorTile(tile, tileNumber);
   }
 
-  // Determines whether a given tile can be moved
   function tileMovable(tileNumber) {
     var selectedTile = tileMap[tileNumber];
     var emptyTile = tileMap.empty;
@@ -209,7 +170,8 @@ function game() {
     }
   }
 
-  // Returns true/false based on if the puzzle has been solved
+  var checkSol = false;
+
   function checkSolution() {
     if (tileMap.empty.position !== 9) return false;
 
@@ -224,7 +186,6 @@ function game() {
     return true;
   }
 
-  // Check if tile is in correct place!
   function recolorTile(tile, tileId) {
     if (tileId == tileMap[tileId].position) {
       tile.classList.remove("error");
@@ -233,21 +194,19 @@ function game() {
     }
   }
 
-  let a = document.getElementById("shuffle-option-dron");
+  var a = document.getElementById("shuffle-option-dron");
 
   let shuffleOption = 0;
+  var isShuffle = false;
+  var isShuffleBtnClicked = false;
 
   a.addEventListener("change", () => {
     shuffleOption = a.options[a.value].textContent;
-    // console.log(a.options[a.value].textContent);
     shuffleBtn.style.display = "block";
   });
-
-  // Shuffles the current tiles
   shuffleTimeouts = [];
   function shuffle() {
     clearTimers(solveTimeouts);
-    var boardTiles = document.querySelectorAll(".tile");
     var shuffleDelay = 200;
     shuffleLoop();
 
@@ -255,17 +214,22 @@ function game() {
     if (shuffleOption == 3) {
       while (shuffleCounter < 2) {
         shuffleDelay += 200;
+        isShuffle = true;
         shuffleTimeouts.push(setTimeout(shuffleLoop, shuffleDelay));
         shuffleCounter++;
       }
+      isShuffle = false;
     }
     if (shuffleOption == 30) {
       while (shuffleCounter < 29) {
         shuffleDelay += 200;
+        isShuffle = true;
         shuffleTimeouts.push(setTimeout(shuffleLoop, shuffleDelay));
         shuffleCounter++;
       }
+      isShuffle = false;
     }
+    isShuffleBtnClicked = true;
     a.style.display = "none";
     shuffleBtn.style.display = "none";
   }
@@ -311,24 +275,20 @@ function game() {
       );
     }
   }
+  var modal = document.querySelector("#myModal");
+
+  modal.addEventListener("click", () => {
+    modal.style.display = "none";
+    shuffleOption = 0;
+    isShuffle = false;
+    isShuffleBtnClicked = false;
+    checkSol = false;
+    a.style.display = "block";
+    a.value='Not selected'
+    a.addEventListener("change", () => {
+    shuffleOption = a.options[a.value].textContent;
+    shuffleBtn.style.display = "block";
+  });
+  });
 }
 
-//modal funcionality
-var modal = document.getElementById("myModal");
-// var btn = document.getElementById("myBtn");
-// var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-// btn.onclick = function() {
-//   modal.style.display = "block";
-// };
-
-// span.onclick = function() {
-//   modal.style.display = "none";
-// };
-
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
