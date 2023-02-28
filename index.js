@@ -43,7 +43,7 @@ function Puzzle() {
     books.classList.remove("chosen");
     giraffe.classList.toggle("chosen");
     bool = !bool;
-    console.log(giraffe.classList.value);
+
     if (giraffe.classList.value == "giraffe chosen") {
       btn.classList.add("active");
     }
@@ -58,7 +58,6 @@ function Puzzle() {
     books.classList.remove("chosen");
     tourist.classList.toggle("chosen");
     bool = !bool;
-    console.log(tourist.classList);
     if (tourist.classList.value == "tourist chosen") {
       btn.classList.add("active");
     }
