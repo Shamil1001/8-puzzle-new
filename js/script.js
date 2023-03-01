@@ -240,6 +240,7 @@ function game() {
   var lastShuffled;
   var number = 0;
 
+  // console.log()
   function shuffleLoop() {
     var emptyPosition = tileMap.empty.position;
     var shuffleTiles = movementMap(emptyPosition);
