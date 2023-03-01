@@ -249,13 +249,13 @@ function game() {
     for (var i = 1; i <= 8; i++) {
       if (tileMap[i].position == tilePosition) {
         var locatedTileNumber = tileMap[i].tileNumber;
-        number++;
         locatedTile = tiles[locatedTileNumber - 1];
       }
     }
     if (lastShuffled != locatedTileNumber) {
       moveTile(locatedTile);
       lastShuffled = locatedTileNumber;
+      number++;
     } else {
       shuffleLoop();
     }

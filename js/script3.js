@@ -251,6 +251,7 @@ function game() {
     if (lastShuffled != locatedTileNumber) {
       moveTile(locatedTile);
       number++;
+      console.log(number);
       lastShuffled = locatedTileNumber;
     } else {
       shuffleLoop();
