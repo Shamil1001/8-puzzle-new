@@ -137,6 +137,7 @@ function game() {
     tileMap.empty.left = tileMap[tileNumber].left;
     tileMap.empty.position = tileMap[tileNumber].position;
 
+    // console.log()
     var xMovement = emptyLeft * 3.3;
     var yMovement = emptyTop * 3.3;
 
